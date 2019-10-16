@@ -1,34 +1,59 @@
 import React from 'react';
 import logo from './logo.svg';
 // import './App.css';
-import { ThemeProvider, Button, styled } from 'fannypack';
+import { ThemeProvider, Button, styled, css } from 'fannypack';
+import 'typeface-roboto-mono'
+
+const theme = {
+  global: {
+    fontFamily: 'Roboto Mono',
+    fontSize: 20,
+    base: css`
+      html,
+      body {
+        background-color: #fff;
+        color: #000;
+      }
+    `
+  },
+  palette: {
+    primary: 'blue'
+  },
+  layout: {
+    mobileBreakpoint: 520,
+    tabletBreakpoint: 960
+  },
+  Button: {
+    disabled: css`
+      opacity: 0.2
+    `
+  },
+  Text: css`
+    font-weight: 300;
+    color: #000;
+  `
+}
+
 
 const StyledApp = styled.div`
   text-align: center;
 `
 const StyledHeader = styled.header`
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
 `
+
 const AppLogo = styled.img`
   height: 40vmin;
 `
 
-const AppLink = styled.a`
-  color: #09d3ac;
-`
-
-
-
 function App() {
   return (
-    <ThemeProvider>
+    <ThemeProvider theme={theme}>
       <StyledApp>
         <StyledHeader>
           <AppLogo src={logo} alt="logo" />
@@ -38,14 +63,6 @@ function App() {
         <Button palette="primary">
           Hello world!
         </Button>
-
-          <AppLink
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </AppLink>
         </StyledHeader>
       </StyledApp>
     </ThemeProvider>
